@@ -22,7 +22,7 @@ import:
 # what the upload's folders and file name give, and these fill the rest.
 paths:
   default: '%if{$albumartist,$albumartist,Unknown Artist}/%if{$album,$album,Unknown Album}%aunique{}/%if{$track,$track }$title'
-  singleton: '%if{$artist,$artist,Unknown Artist}/Non-Album/$title'
+  singleton: '%if{$artist,$artist,Unknown Artist}/Unknown Album/$title'
   comp: 'Compilations/%if{$album,$album,Unknown Album}%aunique{}/%if{$track,$track }$title'
 
 # Imports already run one at a time; one thread each keeps beets to one core.

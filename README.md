@@ -17,7 +17,7 @@ Pre-release, tested with Navidrome 0.64.2.
   page reload when the same file is added again.
 - Tagging by beets: tracks are grouped into albums by their tags, retagged from
   MusicBrainz where the match is certain, and filed as `Artist/Album/NN
-  Title`; tracks without an album go to `Artist/Non-Album/Title`. Matched
+  Title`; tracks without an album go to `Artist/Unknown Album/Title`. Matched
   albums get a `cover.jpg` from the Cover Art Archive.
 - No duplicates: a track already in any Navidrome library is not added again,
   however it got there.
