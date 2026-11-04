@@ -122,7 +122,7 @@ beets runs without prompts. All files of one import are grouped into albums by
 their album and artist tags, wherever they came from: a zip, a folder or single
 files. An album whose tracks arrive in several parts of one upload is merged.
 MusicBrainz tags are applied only to confident matches; everything else keeps
-its own tags. Cover art comes from the files themselves or, for a MusicBrainz
+its own tags, and a track without a title takes it from its file name. Cover art comes from the files themselves or, for a MusicBrainz
 match, from the Cover Art Archive; image uploads are refused. The settings are
 in [beets.yaml](beets.yaml).
 

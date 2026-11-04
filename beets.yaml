@@ -18,17 +18,19 @@ import:
   incremental: no
   log: null
 
+# Untagged tracks would land in "_" folders as "00.mp3": fromfilename takes
+# the title (and a track number) from the file name, and these fill the rest.
 paths:
-  default: $albumartist/$album%aunique{}/$track $title
-  singleton: $artist/Non-Album/$title
-  comp: Compilations/$album%aunique{}/$track $title
+  default: '%if{$albumartist,$albumartist,Unknown Artist}/%if{$album,$album,Unknown Album}%aunique{}/%if{$track,$track }$title'
+  singleton: '%if{$artist,$artist,Unknown Artist}/Non-Album/$title'
+  comp: 'Compilations/%if{$album,$album,Unknown Album}%aunique{}/%if{$track,$track }$title'
 
 # Imports already run one at a time; one thread each keeps beets to one core.
 threaded: no
 
 # Since beets 2.x MusicBrainz matching is a plugin; a plugins list without it
 # imports everything as-is.
-plugins: musicbrainz fetchart
+plugins: musicbrainz fetchart fromfilename
 
 # cover.jpg beside the tracks for MusicBrainz matches. Uploads carry no
 # images; other albums show the art embedded in their files.
