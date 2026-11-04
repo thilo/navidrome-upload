@@ -57,7 +57,7 @@ services:
       - navidrome_data:/data
 
   navidrome-upload:
-    build: https://github.com/thilo/navidrome-upload.git#v0.1.0
+    build: https://github.com/thilo/navidrome-upload.git#v0.1.1
     # Go reaps beets, but not the healthcheck's leftover processes.
     init: true
     # The owner of the music files: the upload writes them.

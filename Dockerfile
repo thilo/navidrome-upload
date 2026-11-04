@@ -11,7 +11,7 @@ ADD --checksum=sha256:eca17b3a6c95940f50ffac04e26122e22ff92df1d58b6a0c46f8e2f404
     https://cdn.jsdelivr.net/npm/uppy@6.0.6/dist/uppy.min.css static/uppy.min.css
 RUN go test ./... && CGO_ENABLED=0 go build -trimpath -ldflags=-s -o /navidrome-upload .
 
-FROM python:3.13-slim
+FROM python:3.13-alpine
 RUN pip install --no-cache-dir beets==2.14.1
 COPY beets.yaml /etc/beets/config.yaml
 COPY --from=build /navidrome-upload /usr/local/bin/navidrome-upload
