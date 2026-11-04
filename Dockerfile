@@ -14,6 +14,7 @@ RUN go test ./... && CGO_ENABLED=0 go build -trimpath -ldflags=-s -o /navidrome-
 FROM python:3.13-alpine
 RUN pip install --no-cache-dir beets==2.14.1
 COPY beets.yaml /etc/beets/config.yaml
+COPY beetsplug /etc/beets/beetsplug
 COPY --from=build /navidrome-upload /usr/local/bin/navidrome-upload
 # Must be able to write the music files; override with compose's user:.
 USER 1000:1000

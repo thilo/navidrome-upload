@@ -18,8 +18,8 @@ import:
   incremental: no
   log: null
 
-# Untagged tracks would land in "_" folders as "00.mp3": fromfilename takes
-# the title (and a track number) from the file name, and these fill the rest.
+# Untagged tracks would land in "_" folders as "00.mp3": fromfolder fills
+# what the upload's folders and file name give, and these fill the rest.
 paths:
   default: '%if{$albumartist,$albumartist,Unknown Artist}/%if{$album,$album,Unknown Album}%aunique{}/%if{$track,$track }$title'
   singleton: '%if{$artist,$artist,Unknown Artist}/Non-Album/$title'
@@ -30,7 +30,9 @@ threaded: no
 
 # Since beets 2.x MusicBrainz matching is a plugin; a plugins list without it
 # imports everything as-is.
-plugins: musicbrainz fetchart fromfilename
+plugins: fromfolder musicbrainz fetchart
+# fromfolder is this repo's beetsplug/fromfolder.py.
+pluginpath: /etc/beets/beetsplug
 
 # cover.jpg beside the tracks for MusicBrainz matches. Uploads carry no
 # images; other albums show the art embedded in their files.

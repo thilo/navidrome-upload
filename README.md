@@ -17,7 +17,8 @@ Pre-release, tested with Navidrome 0.64.2.
   page reload when the same file is added again.
 - Tagging by beets: tracks are grouped into albums by their tags, retagged from
   MusicBrainz where the match is certain, and filed as `Artist/Album/NN
-  Title`. Matched albums get a `cover.jpg` from the Cover Art Archive.
+  Title`; tracks without an album go to `Artist/Non-Album/Title`. Matched
+  albums get a `cover.jpg` from the Cover Art Archive.
 - No duplicates: a track already in any Navidrome library is not added again,
   however it got there.
 - A targeted scan: Navidrome scans only the folders an upload wrote, also when
@@ -121,10 +122,13 @@ served at the root of its domain: the page does not support `ND_BASEURL`.
 beets runs without prompts. All files of one import are grouped into albums by
 their album and artist tags, wherever they came from: a zip, a folder or single
 files. An album whose tracks arrive in several parts of one upload is merged.
-MusicBrainz tags are applied only to confident matches; everything else keeps
-its own tags, and a track without a title takes it from its file name. Cover art comes from the files themselves or, for a MusicBrainz
-match, from the Cover Art Archive; image uploads are refused. The settings are
-in [beets.yaml](beets.yaml).
+Empty tags are first filled from the uploaded folders and file name
+(`Artist/Album/NN Title`, or `Artist - Title`); see
+[beetsplug/fromfolder.py](beetsplug/fromfolder.py). Tracks that still have no
+album are matched one by one. MusicBrainz tags are applied only to confident
+matches; everything else keeps its own tags. Cover art comes from the files
+themselves or, for a MusicBrainz match, from the Cover Art Archive; image
+uploads are refused. The settings are in [beets.yaml](beets.yaml).
 
 Before a track moves into the library, the server asks Navidrome's song API
 whether it already has it, in any library:

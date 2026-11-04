@@ -184,6 +184,33 @@ func runJob(j *job) error {
 	if err := logRun(j, beet("import", in)); err != nil {
 		return fmt.Errorf("beets: %w", err)
 	}
+	// An as-is import changes only beets' database; Navidrome reads the files,
+	// so write what fromfolder filled in.
+	if err := logRun(j, beet("write")); err != nil {
+		return fmt.Errorf("beets write: %w", err)
+	}
+	// Album matching needs an album; tracks that came without one are matched
+	// one by one instead, again only where the match is certain. beets 2.14
+	// crashes re-importing them in place (-L) once their album empties, so they
+	// leave the database (not the disk) and are imported again as singles.
+	singles, err := beet("ls", "-f", "$path", "album::^$").Output()
+	if err != nil {
+		return fmt.Errorf("beets ls: %w", err)
+	}
+	var paths []string
+	for _, p := range strings.Split(string(singles), "\n") {
+		if p != "" && !strings.HasPrefix(p, "Created database backup") {
+			paths = append(paths, p)
+		}
+	}
+	if len(paths) > 0 {
+		if err := logRun(j, beet("rm", "-y", "album::^$")); err != nil {
+			return fmt.Errorf("beets rm: %w", err)
+		}
+		if err := logRun(j, beet(append([]string{"import", "-s"}, paths...)...)); err != nil {
+			return fmt.Errorf("beets single tracks: %w", err)
+		}
+	}
 	listing, err := beet("ls", "-f", "$mb_trackid\x1f$albumartist\x1f$artist\x1f$album\x1f$title\x1f$path").Output()
 	if err != nil {
 		return fmt.Errorf("beets ls: %w", err)
