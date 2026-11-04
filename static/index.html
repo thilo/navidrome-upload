@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Upload music</title>
+<link rel="icon" href="/app/favicon.ico">
+<link rel="stylesheet" href="uppy.min.css">
+<link rel="stylesheet" href="style.css">
+<script type="module" src="app.js"></script>
+</head>
+<body>
+<header>
+  <a href="/app/"><img src="/app/android-chrome-192x192.png" alt="">Navidrome</a>
+  <h1>· Upload music</h1>
+</header>
+<main>
+  <p id="login" class="card" hidden>Log in to <a href="/app/">Navidrome</a> as an admin first, then reload this page.</p>
+  <div id="ready" class="card" hidden>
+    <label for="library">Library</label>
+    <select id="library"></select>
+    <p class="hint">Audio files, folders or zip archives (mp3, flac, m4a, ogg, opus); no images. Cover art comes from the files or MusicBrainz. beets tags and sorts them into Artist/Album folders; tracks already in a library are skipped. An interrupted upload continues when you add the same file again.</p>
+    <div id="drop"></div>
+    <section id="imports"></section>
+  </div>
+</main>
+</body>
+</html>

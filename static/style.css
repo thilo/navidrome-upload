@@ -1,0 +1,53 @@
+/* Navidrome's Dark and Light themes (Material UI defaults plus Navidrome's
+   overrides); app.js picks the one the web UI is set to. */
+:root, [data-theme="dark"] {
+  --bg: #303030; --paper: #424242; --bar: #212121; --bar-fg: #fff;
+  --fg: #fff; --muted: rgba(255, 255, 255, 0.7); --divider: rgba(255, 255, 255, 0.12);
+  --primary: #90caf9; --primary-fg: rgba(0, 0, 0, 0.87); --error: #f44336;
+  color-scheme: dark;
+}
+[data-theme="light"] {
+  --bg: #fafafa; --paper: #fff; --bar: #3f51b5; --bar-fg: #fff;
+  --fg: rgba(0, 0, 0, 0.87); --muted: rgba(0, 0, 0, 0.54); --divider: rgba(0, 0, 0, 0.12);
+  --primary: #3f51b5; --primary-fg: #fff; --error: #f44336;
+  color-scheme: light;
+}
+body { margin: 0; background: var(--bg); color: var(--fg); font: 400 14px/1.43 Roboto, Helvetica, Arial, sans-serif; }
+header {
+  display: flex; align-items: center; gap: 12px; height: 48px; padding: 0 16px;
+  background: var(--bar); color: var(--bar-fg);
+  box-shadow: 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
+}
+header a { color: inherit; display: flex; align-items: center; gap: 8px; text-decoration: none; font-weight: 500; }
+header img { width: 28px; height: 28px; }
+header h1 { font-size: 20px; font-weight: 500; margin: 0; letter-spacing: 0.15px; }
+main { max-width: 800px; margin: 0 auto; padding: 24px 16px; }
+.card {
+  background: var(--paper); border-radius: 4px; padding: 16px;
+  box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+}
+a { color: var(--primary); }
+label { color: var(--muted); font-size: 12px; display: block; }
+select {
+  font: inherit; font-size: 16px; color: var(--fg); background: transparent; display: block;
+  margin: 4px 0 12px; padding: 6px 0; min-width: 220px;
+  border: 0; border-bottom: 1px solid var(--muted); border-radius: 0;
+}
+select:focus { outline: none; border-bottom: 2px solid var(--primary); }
+select option { background: var(--paper); }
+.hint { color: var(--muted); margin: 0 0 16px; }
+#imports article { margin-top: 16px; }
+#imports h2 { font-size: 16px; font-weight: 500; margin: 0 0 4px; }
+#imports pre {
+  white-space: pre-wrap; font-size: 12px; max-height: 240px; overflow: auto; margin: 4px 0;
+  padding: 8px; background: var(--bg); border-radius: 4px;
+}
+.bad { color: var(--error); }
+
+/* Uppy's dashboard in the same colours. */
+.uppy-Dashboard-inner { background: var(--paper) !important; border: 1px solid var(--divider) !important; }
+.uppy-Dashboard-AddFiles { border-color: var(--divider) !important; }
+.uppy-Dashboard-browse, .uppy-Dashboard-AddFiles-title { color: var(--fg) !important; }
+.uppy-Dashboard-browse { color: var(--primary) !important; }
+.uppy-StatusBar-actionBtn--upload { background: var(--primary) !important; color: var(--primary-fg) !important; }
+.uppy-StatusBar-progress { background: var(--primary) !important; }

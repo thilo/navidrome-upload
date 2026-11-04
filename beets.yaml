@@ -1,0 +1,37 @@
+# beets config for navidrome-upload. The library database and the target
+# directory come from the command line, one fresh database per import.
+import:
+  # From the job's in/ to its out/ folder, both on local disk; the importer
+  # moves the tracks that are not duplicates on into the library.
+  move: yes
+  write: yes
+  # No prompts: apply only confident MusicBrainz matches, import the rest with
+  # the tags it came with.
+  quiet: yes
+  quiet_fallback: asis
+  # Tracks are split into albums by their tags, wherever they were uploaded.
+  group_albums: yes
+  # An album whose tracks arrive by different routes in one upload is found
+  # twice; the database only holds this import, so join the parts.
+  duplicate_action: merge
+  resume: no
+  incremental: no
+  log: null
+
+paths:
+  default: $albumartist/$album%aunique{}/$track $title
+  singleton: $artist/Non-Album/$title
+  comp: Compilations/$album%aunique{}/$track $title
+
+# Imports already run one at a time; one thread each keeps beets to one core.
+threaded: no
+
+plugins: fetchart
+
+# cover.jpg beside the tracks for MusicBrainz matches. Uploads carry no
+# images; other albums show the art embedded in their files.
+fetchart:
+  sources: [coverart, itunes]
+
+ui:
+  color: no
