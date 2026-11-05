@@ -37,7 +37,9 @@ pluginpath: /etc/beets/beetsplug
 # cover.jpg beside the tracks for MusicBrainz matches. Uploads carry no
 # images; other albums show the art embedded in their files.
 fetchart:
-  sources: [coverart, itunes]
+  # The Cover Art Archive only: it is looked up by the matched release, while
+  # itunes searches by artist and album name and can return another album's art.
+  sources: [coverart]
 
 ui:
   color: no
